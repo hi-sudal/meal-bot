@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: # 세션 파일 저장을 위해 권한 추가
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -27,3 +29,11 @@ jobs:
           INSTA_ID: ${{ secrets.INSTA_ID }}
           INSTA_PW: ${{ secrets.INSTA_PW }}
         run: python main.py
+
+      - name: Commit and push session file # 세션 파일이 생성/변경되면 깃허브에 저장
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add session.json || true
+          git commit -m "Update instagram session" || true
+          git push
