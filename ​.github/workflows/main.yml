@@ -26,3 +26,4 @@ jobs:
           INSTA_ID: ${{ secrets.INSTA_ID }}
           INSTA_PW: ${{ secrets.INSTA_PW }}
         run: python main.py
+
