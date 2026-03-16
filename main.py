@@ -7,8 +7,8 @@ from instagrapi import Client
 from PIL import Image, ImageDraw, ImageFont
 
 # --- 학교 설정 (본인 정보 입력) ---
-ATPT_OFCDC_SC_CODE = "여기에_교육청코드" 
-SD_SCHUL_CODE = "여기에_학교코드"
+ATPT_OFCDC_SC_CODE = "Q10" 
+SD_SCHUL_CODE = "8490081"
 # -------------------------------
 
 FONT_PATH = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf" 
