@@ -1,0 +1,26 @@
+name: Insta Meal Bot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 13 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install instagrapi
+
+      - name: Run bot
+        env:
+          INSTA_ID: ${{ secrets.INSTA_ID }}
+          INSTA_PW: ${{ secrets.INSTA_PW }}
+        run: python main.py
