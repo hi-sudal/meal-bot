@@ -1,9 +1,8 @@
 name: Insta Meal Bot
 
 on:
-  workflow_dispatch: # 수동 실행 버튼
+  workflow_dispatch:
   schedule:
-    # 한국 시간(KST) 오후 10시에 매일 실행 (UTC 기준 13시)
     - cron: '0 13 * * *'
 
 jobs:
@@ -16,13 +15,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' # 에러 방지를 위해 3.10 이상 사용
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
-          pip install instagrapi
-          pip install Pillow
-          # 한글 폰트가 깨질 경우를 대비해 나눔폰트 설치
+          pip install instagrapi Pillow
           sudo apt-get -y install fonts-nanum
 
       - name: Run bot
