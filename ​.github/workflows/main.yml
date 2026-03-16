@@ -1,0 +1,28 @@
+name: Insta Meal Bot
+
+on:
+  schedule:
+    # 매일 아침 8시(한국 시간)에 실행 (UTC 기준 23시)
+    - cron: '0 23 * * *'
+  workflow_dispatch: # 수동으로도 실행할 수 있게 하는 버튼
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install instagrapi
+
+      - name: Run bot
+        env:
+          INSTA_ID: ${{ secrets.INSTA_ID }}
+          INSTA_PW: ${{ secrets.INSTA_PW }}
+        run: python main.py
